@@ -7,7 +7,6 @@ import { Settings, Plus, Filter, ChevronDown, Check, Circle, Square, X, Search, 
 
 interface ServiceGridProps {
   onRemoveService?: (serviceName: string) => void
-  onShowManagementDialog?: () => void
 }
 
 const ServiceGrid: Component<ServiceGridProps> = (props) => {

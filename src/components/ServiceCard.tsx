@@ -104,21 +104,23 @@ const ServiceCard: Component<ServiceCardProps> = (props) => {
 
   return (
     <div 
-      class={`card-hover rounded-xl p-6 service-card-enter selection-indicator ${
+      class={`card-hover rounded-xl p-6 service-card-enter selection-indicator h-full flex flex-col ${
         isSelected() ? 'selected' : ''
       }`}
       role="article"
       aria-label={`Service card for ${props.service.name}`}
     >
       {/* Enhanced Header */}
-      <div class="flex items-start justify-between mb-4">
+      <div class="flex items-start justify-between mb-4 gap-3">
         <div class="flex-1 min-w-0">
-          <div class="flex items-center space-x-3 mb-2">
-            <h3 class="font-semibold text-foreground text-lg truncate">{props.service.name}</h3>
+          <div class="flex items-start gap-2 mb-2">
+            <h3 class="font-semibold text-foreground text-lg leading-tight break-words flex-1 min-w-0">
+              <span class="block truncate">{props.service.name}</span>
+            </h3>
             <button
               onClick={() => toggleSelection(props.service.name)}
               onKeyDown={(e) => handleKeyDown(e, () => toggleSelection(props.service.name))}
-              class={`w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all duration-200 ${
+              class={`w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all duration-200 flex-shrink-0 ${
                 isSelected() 
                   ? 'bg-primary border-primary text-primary-foreground shadow-sm' 
                   : 'border-muted-foreground hover:border-primary hover:bg-primary/5'
@@ -141,7 +143,7 @@ const ServiceCard: Component<ServiceCardProps> = (props) => {
           size="sm"
           variant="outline"
           onClick={props.onViewDetails}
-          class="ml-3 px-3 py-2 bg-primary/5 hover:bg-primary hover:text-primary-foreground border-primary/20 hover:border-primary text-primary font-medium shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105"
+          class="px-3 py-2 bg-primary/5 hover:bg-primary hover:text-primary-foreground border-primary/20 hover:border-primary text-primary font-medium shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105 flex-shrink-0"
           title="View service details and logs (Ctrl+D)"
           aria-label={`View details for ${props.service.name}`}
         >
@@ -177,6 +179,9 @@ const ServiceCard: Component<ServiceCardProps> = (props) => {
           </Show>
         </div>
       </Show>
+
+      {/* Spacer to push actions to bottom */}
+      <div class="flex-1"></div>
 
       {/* Enhanced Actions */}
       <div class="flex items-center space-x-2">
