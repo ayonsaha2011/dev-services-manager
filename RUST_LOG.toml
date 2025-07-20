@@ -1,0 +1,18 @@
+# Logging configuration for Dev Services Manager
+# Set this environment variable to control log levels:
+# export RUST_LOG=info
+# export RUST_LOG=debug
+# export RUST_LOG=trace
+
+# Available log levels (from most to least verbose):
+# trace   - Most detailed logging
+# debug   - Detailed debugging information
+# info    - General information (default)
+# warn    - Warning messages
+# error   - Error messages only
+
+# Examples:
+# RUST_LOG=info                    # General info level
+# RUST_LOG=debug                   # More detailed logging
+# RUST_LOG=dev_services_manager=debug  # Debug for this specific crate
+# RUST_LOG=info,sqlx=warn          # Info for app, warnings for SQLx 

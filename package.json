@@ -1,0 +1,44 @@
+{
+  "name": "dev-services-manager-frontend",
+  "description": "A modern development services manager powered by AI for streamlined services and project management",
+  "private": false,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "release": "./scripts/release.sh",
+    "release:bump": "./scripts/release-bump.sh",
+    "bump:patch": "./scripts/release-bump.sh patch",
+    "bump:minor": "./scripts/release-bump.sh minor",
+    "bump:major": "./scripts/release-bump.sh major",
+    "bump:patch:push": "./scripts/release-bump.sh patch -p",
+    "bump:minor:push": "./scripts/release-bump.sh minor -p",
+    "bump:major:push": "./scripts/release-bump.sh major -p"
+  },
+  "dependencies": {
+    "@kobalte/core": "^0.12.6",
+    "@tauri-apps/api": "^2.0.0",
+    "@tauri-apps/plugin-dialog": "^2.3.0",
+    "@tauri-apps/plugin-fs": "^2.4.0",
+    "@tauri-apps/plugin-notification": "^2.3.0",
+    "@tauri-apps/plugin-shell": "^2.3.0",
+    "@tauri-apps/plugin-window": "^2.0.0-alpha.1",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "lucide-solid": "^0.294.0",
+    "solid-heroicons": "^3.2.0",
+    "solid-js": "^1.8.5",
+    "solid-toast": "^0.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.3.2",
+    "vite": "^5.0.2",
+    "vite-plugin-solid": "^2.7.2"
+  }
+}
