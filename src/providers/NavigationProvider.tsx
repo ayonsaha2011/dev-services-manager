@@ -2,18 +2,19 @@ import { Component, createContext, createSignal, useContext, ParentComponent } f
 import { Service } from '../types/service'
 
 interface NavigationContextType {
-  currentPage: () => 'services' | 'service-detail'
+  currentPage: () => 'services' | 'service-detail' | 'service-management'
   selectedService: () => Service | null
-  setCurrentPage: (page: 'services' | 'service-detail') => void
+  setCurrentPage: (page: 'services' | 'service-detail' | 'service-management') => void
   setSelectedService: (service: Service | null) => void
   navigateToService: (service: Service) => void
   navigateToServices: () => void
+  navigateToServiceManagement: () => void
 }
 
 const NavigationContext = createContext<NavigationContextType>()
 
 export const NavigationProvider: ParentComponent = (props) => {
-  const [currentPage, setCurrentPage] = createSignal<'services' | 'service-detail'>('services')
+  const [currentPage, setCurrentPage] = createSignal<'services' | 'service-detail' | 'service-management'>('services')
   const [selectedService, setSelectedService] = createSignal<Service | null>(null)
 
   const navigateToService = (service: Service) => {
@@ -26,13 +27,19 @@ export const NavigationProvider: ParentComponent = (props) => {
     setCurrentPage('services')
   }
 
+  const navigateToServiceManagement = () => {
+    setSelectedService(null)
+    setCurrentPage('service-management')
+  }
+
   const value: NavigationContextType = {
     currentPage,
     selectedService,
     setCurrentPage,
     setSelectedService,
     navigateToService,
-    navigateToServices
+    navigateToServices,
+    navigateToServiceManagement
   }
 
   return (

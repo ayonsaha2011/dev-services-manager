@@ -5,10 +5,10 @@ import TitleBar from './components/TitleBar'
 import Header from './components/Header'
 import ServiceGrid from './components/ServiceGrid'
 import ServiceDetailPage from './components/ServiceDetailPage'
+import ServiceManagementPage from './components/ServiceManagementPage'
 import PasswordDialog from './components/PasswordDialog'
 
 import ServiceRemovalDialog from './components/ServiceRemovalDialog'
-import ServiceManagementDialog from './components/ServiceManagementDialog'
 import { ThemeProvider } from './providers/ThemeProvider'
 import { ServiceProvider, useServices } from './providers/ServiceProvider'
 import { NavigationProvider, useNavigation } from './providers/NavigationProvider'
@@ -27,10 +27,9 @@ const AppContent: Component = () => {
     stopAllServices
   } = useServices()
   
-  const { currentPage, navigateToServices } = useNavigation()
+  const { currentPage, navigateToServices, navigateToServiceManagement } = useNavigation()
 
   const [showRemovalDialog, setShowRemovalDialog] = createSignal(false)
-  const [showManagementDialog, setShowManagementDialog] = createSignal(false)
   const [serviceToRemove, setServiceToRemove] = createSignal<string>('')
 
   // Keyboard shortcuts handler
@@ -73,7 +72,7 @@ const AppContent: Component = () => {
 
         case 'm':
           event.preventDefault()
-          setShowManagementDialog(true)
+          navigateToServiceManagement()
           break
         case 'escape':
           event.preventDefault()
@@ -173,15 +172,18 @@ const AppContent: Component = () => {
       
       <Show when={currentPage() === 'services'}>
         <Header 
-          onShowManagementDialog={() => setShowManagementDialog(true)}
+          onShowManagementDialog={navigateToServiceManagement}
         />
       </Show>
       
       <main class={currentPage() === 'services' ? "container mx-auto px-6 py-6 mt-32" : "mt-12 h-[calc(100vh-3rem)]"}>
-        <Show when={currentPage() === 'services'} fallback={<ServiceDetailPage />}>
+        <Show when={currentPage() === 'services'} fallback={
+          <Show when={currentPage() === 'service-detail'} fallback={<ServiceManagementPage />}>
+            <ServiceDetailPage />
+          </Show>
+        }>
           <ServiceGrid 
             onRemoveService={handleServiceRemove}
-            onShowManagementDialog={() => setShowManagementDialog(true)}
           />
         </Show>
       </main>
@@ -201,15 +203,7 @@ const AppContent: Component = () => {
         onConfirm={handleRemovalConfirm}
       />
 
-      <ServiceManagementDialog
-        isOpen={showManagementDialog()}
-        onClose={() => {
-          setShowManagementDialog(false)
-          // Refresh services after management dialog closes to reflect changes
-          refreshServices()
-        }}
-        onRefresh={() => refreshServices()}
-      />
+
     </div>
   )
 }
