@@ -18,7 +18,7 @@
     "bump:major:push": "./scripts/release-bump.sh major -p"
   },
   "dependencies": {
-    "@kobalte/core": "^0.12.6",
+    "@kobalte/core": "^0.13.10",
     "@tauri-apps/api": "^2.0.0",
     "@tauri-apps/plugin-dialog": "^2.3.0",
     "@tauri-apps/plugin-fs": "^2.4.0",
