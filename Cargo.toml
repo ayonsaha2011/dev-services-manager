@@ -21,7 +21,7 @@ anyhow = "1.0"
 chrono = { version = "0.4", features = ["serde"] }
 log = "0.4"
 env_logger = "0.10"
-sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "sqlite", "chrono", "macros"] }
+sqlx = { version = "0.8", features = ["runtime-tokio-rustls", "sqlite", "chrono", "macros"] }
 dirs = "5.0"
 
 [features]
