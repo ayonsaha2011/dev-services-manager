@@ -27,7 +27,7 @@
     "@tauri-apps/plugin-window": "^2.0.0-alpha.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "lucide-solid": "^0.294.0",
+    "lucide-solid": "^0.525.0",
     "solid-heroicons": "^3.2.0",
     "solid-js": "^1.8.5",
     "solid-toast": "^0.5.0"
